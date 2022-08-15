@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\laca\source\repos\maps\QMapControl\QMapControl\x64\Debug\QMapControl.dll</FullPath>
+      <FullPath>D:\Projects\Projects (Qt)\maps\QMapControl\QMapControl\x64\Debug\QMapControl.dll</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\laca\source\repos\maps\QMapControl\QMapControl\x64\Debug\CityMap.exe</FullPath>
+      <FullPath>D:\Projects\Projects (Qt)\maps\QMapControl\QMapControl\x64\Debug\CityMap.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

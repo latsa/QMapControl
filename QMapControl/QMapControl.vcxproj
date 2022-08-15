@@ -113,7 +113,10 @@
     <ClInclude Include="RasterUtils.h" />
     <QtMoc Include="QProgressIndicator.h" />
     <QtMoc Include="AdapterRaster.h" />
-    <QtMoc Include="ESRIShapefile.h" />
+    <QtMoc Include="ESRIShapefile.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </QtMoc>
     <QtMoc Include="Geometry.h" />
     <QtMoc Include="GeometryLineString.h" />
     <QtMoc Include="GeometryPoint.h" />
@@ -129,7 +132,10 @@
     <ClInclude Include="GPS_Position.h" />
     <QtMoc Include="ImageManager.h" />
     <QtMoc Include="Layer.h" />
-    <QtMoc Include="LayerESRIShapefile.h" />
+    <QtMoc Include="LayerESRIShapefile.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </QtMoc>
     <QtMoc Include="LayerGeometry.h" />
     <QtMoc Include="LayerMapAdapter.h" />
     <ClInclude Include="LayerRaster.h" />
@@ -152,7 +158,10 @@
     <ClInclude Include="qmapcontrol_global.h" />
     <QtMoc Include="QMapControl.h" />
     <ClCompile Include="AdapterRaster.cpp" />
-    <ClCompile Include="ESRIShapefile.cpp" />
+    <ClCompile Include="ESRIShapefile.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="GeometryLineString.cpp" />
     <ClCompile Include="GeometryPoint.cpp" />
@@ -168,7 +177,10 @@
     <ClCompile Include="GPS_Position.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Layer.cpp" />
-    <ClCompile Include="LayerESRIShapefile.cpp" />
+    <ClCompile Include="LayerESRIShapefile.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="LayerGeometry.cpp" />
     <ClCompile Include="LayerMapAdapter.cpp" />
     <ClCompile Include="LayerRaster.cpp" />
