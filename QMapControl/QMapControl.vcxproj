@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{464DDE48-5689-4A13-A79F-D08F2522DF74}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>5.15.1</QtInstall>
+    <QtModules>core;xml;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>5.15.1</QtInstall>
+    <QtModules>core;xml;network;gui;widgets;printsupport</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(WINBUILDS_ROOT)..\gdal\gdal\gcore;$(WINBUILDS_ROOT)..\gdal\gdal\port;$(WINBUILDS_ROOT)..\gdal\gdal\ogr;$(WINBUILDS_ROOT)..\gdal\gdal\ogr\ogrsf_frmts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;Wldap32.lib;GdalDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(WINBUILDS_ROOT)build_msvc16_$(Platform)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(WINBUILDS_ROOT)..\gdal\gdal\gcore;$(WINBUILDS_ROOT)..\gdal\gdal\port;$(WINBUILDS_ROOT)..\gdal\gdal\ogr;$(WINBUILDS_ROOT)..\gdal\gdal\ogr\ogrsf_frmts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;Wldap32.lib;GdalDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(WINBUILDS_ROOT)build_msvc16_$(Platform)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>QMAPCONTROL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>QMAPCONTROL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="QProgressIndicator.cpp" />
+    <ClCompile Include="RasterUtils.cpp" />
+    <ClInclude Include="QuadTreeContainer.h" />
+    <ClInclude Include="RasterUtils.h" />
+    <QtMoc Include="QProgressIndicator.h" />
+    <QtMoc Include="AdapterRaster.h" />
+    <QtMoc Include="ESRIShapefile.h" />
+    <QtMoc Include="Geometry.h" />
+    <QtMoc Include="GeometryLineString.h" />
+    <QtMoc Include="GeometryPoint.h" />
+    <ClInclude Include="GeometryPointArrow.h" />
+    <ClInclude Include="GeometryPointCircle.h" />
+    <ClInclude Include="GeometryPointImage.h" />
+    <ClInclude Include="GeometryPointImageScaled.h" />
+    <QtMoc Include="GeometryPointShape.h" />
+    <QtMoc Include="GeometryPointShapeScaled.h" />
+    <QtMoc Include="GeometryPolygon.h" />
+    <ClInclude Include="GeometryPolygonImage.h" />
+    <QtMoc Include="GeometryWidget.h" />
+    <ClInclude Include="GPS_Position.h" />
+    <QtMoc Include="ImageManager.h" />
+    <QtMoc Include="Layer.h" />
+    <QtMoc Include="LayerESRIShapefile.h" />
+    <QtMoc Include="LayerGeometry.h" />
+    <QtMoc Include="LayerMapAdapter.h" />
+    <ClInclude Include="LayerRaster.h" />
+    <QtMoc Include="MapAdapter.h" />
+    <QtMoc Include="MapAdapterBing.h" />
+    <QtMoc Include="MapAdapterGoogle.h" />
+    <QtMoc Include="MapAdapterOpenSeaMap.h" />
+    <QtMoc Include="MapAdapterOSM.h" />
+    <QtMoc Include="MapAdapterOTM.h" />
+    <QtMoc Include="MapAdapterTile.h" />
+    <ClInclude Include="MapAdapterWMS.h" />
+    <QtMoc Include="MapAdapterYahoo.h" />
+    <ClInclude Include="m_constants.h" />
+    <QtMoc Include="NetworkManager.h" />
+    <ClInclude Include="PersistentCache.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Projection.h" />
+    <ClInclude Include="ProjectionEquirectangular.h" />
+    <ClInclude Include="ProjectionSphericalMercator.h" />
+    <ClInclude Include="qmapcontrol_global.h" />
+    <QtMoc Include="QMapControl.h" />
+    <ClCompile Include="AdapterRaster.cpp" />
+    <ClCompile Include="ESRIShapefile.cpp" />
+    <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="GeometryLineString.cpp" />
+    <ClCompile Include="GeometryPoint.cpp" />
+    <ClCompile Include="GeometryPointArrow.cpp" />
+    <ClCompile Include="GeometryPointCircle.cpp" />
+    <ClCompile Include="GeometryPointImage.cpp" />
+    <ClCompile Include="GeometryPointImageScaled.cpp" />
+    <ClCompile Include="GeometryPointShape.cpp" />
+    <ClCompile Include="GeometryPointShapeScaled.cpp" />
+    <ClCompile Include="GeometryPolygon.cpp" />
+    <ClCompile Include="GeometryPolygonImage.cpp" />
+    <ClCompile Include="GeometryWidget.cpp" />
+    <ClCompile Include="GPS_Position.cpp" />
+    <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="LayerESRIShapefile.cpp" />
+    <ClCompile Include="LayerGeometry.cpp" />
+    <ClCompile Include="LayerMapAdapter.cpp" />
+    <ClCompile Include="LayerRaster.cpp" />
+    <ClCompile Include="MapAdapter.cpp" />
+    <ClCompile Include="MapAdapterBing.cpp" />
+    <ClCompile Include="MapAdapterGoogle.cpp" />
+    <ClCompile Include="MapAdapterOpenSeaMap.cpp" />
+    <ClCompile Include="MapAdapterOSM.cpp" />
+    <ClCompile Include="MapAdapterOTM.cpp" />
+    <ClCompile Include="MapAdapterTile.cpp" />
+    <ClCompile Include="MapAdapterWMS.cpp" />
+    <ClCompile Include="MapAdapterYahoo.cpp" />
+    <ClCompile Include="NetworkManager.cpp" />
+    <ClCompile Include="PersistentCache.cpp" />
+    <ClCompile Include="Projection.cpp" />
+    <ClCompile Include="ProjectionEquirectangular.cpp" />
+    <ClCompile Include="ProjectionSphericalMercator.cpp" />
+    <ClCompile Include="QMapControl.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

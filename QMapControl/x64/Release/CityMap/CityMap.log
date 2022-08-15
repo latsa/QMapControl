@@ -1,0 +1,8 @@
+﻿  moc citymap.h
+  moc dialogs.h
+  CityMap.cpp
+  dialogs.cpp
+  main.cpp
+  moc_citymap.cpp
+  moc_dialogs.cpp
+  CityMap.vcxproj -> C:\Users\laca\source\repos\QMapControl\x64\Release\CityMap.exe

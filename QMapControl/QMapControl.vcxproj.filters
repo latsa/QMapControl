@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd;qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="QMapControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AdapterRaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ESRIShapefile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryLineString.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPointArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPointCircle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPointImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPointImageScaled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPointShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPointShapeScaled.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPolygon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryPolygonImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeometryWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GPS_Position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Layer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerESRIShapefile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerGeometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerMapAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerRaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterBing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterGoogle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterOpenSeaMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterOSM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterOTM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterWMS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapAdapterYahoo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PersistentCache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectionEquirectangular.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectionSphericalMercator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QProgressIndicator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RasterUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="QMapControl.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="AdapterRaster.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ESRIShapefile.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Geometry.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GeometryLineString.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GeometryPoint.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GeometryPointShape.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GeometryPointShapeScaled.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GeometryPolygon.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="GeometryWidget.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ImageManager.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Layer.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="LayerESRIShapefile.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="LayerGeometry.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="LayerMapAdapter.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapter.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterBing.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterGoogle.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterOpenSeaMap.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterOSM.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterOTM.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterTile.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterYahoo.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="NetworkManager.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="QProgressIndicator.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="qmapcontrol_global.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryPointArrow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryPointCircle.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryPointImage.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryPointImageScaled.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeometryPolygonImage.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GPS_Position.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerRaster.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="m_constants.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapAdapterWMS.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PersistentCache.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projection.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectionEquirectangular.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectionSphericalMercator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadTreeContainer.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RasterUtils.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
