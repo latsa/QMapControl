@@ -41,8 +41,6 @@
 #include "qmapcontrol_global.h"
 #include "Point.h"
 
-#include <QDebug>
-
 namespace qmapcontrol
 {
     class LayerGeometry;
@@ -100,12 +98,6 @@ namespace qmapcontrol
             BottomMiddle
         };
 
-        enum FlagsFields {
-            IsSelectable = 0x00000001,
-        };
-
-        typedef qint32 Flags;
-
     protected:
         //! Constructor.
         /*!
@@ -125,6 +117,18 @@ namespace qmapcontrol
 
         //! Destructor.
         virtual ~Geometry() { } /// = default; @todo re-add once MSVC supports default/delete syntax.
+
+        /*!
+         * Fetches the zindex of the geometry
+         * \return z-index of the geomety
+         */
+        int zIndex() const;
+
+        /*!
+         * Set the ZIndex of this geometry
+         * \param z_index
+         */
+        void setZIndex(int z_index);
 
         /*!
          * Fetches the geometry type.
@@ -249,8 +253,6 @@ namespace qmapcontrol
          */
         virtual bool touches(const Geometry* geometry, const int& controller_zoom) const = 0;
 
-        virtual bool hitTestPoint (const PointWorldCoord &point, qreal fuzzyfactor, int controller_zoom) const = 0;
-
         /*!
          * Draws the geometry to a pixmap using the provided painter.
          * @param painter The painter that will draw to the pixmap.
@@ -258,12 +260,6 @@ namespace qmapcontrol
          * @param controller_zoom The current controller zoom.
          */
         virtual void draw(QPainter& painter, const RectWorldCoord& backbuffer_rect_coord, const int& controller_zoom) = 0;
-
-        bool selected() const;
-        void setSelected(bool value);
-
-        Flags flags() const;
-        void setFlags(const Flags &value);
 
     signals:
         /*!
@@ -283,18 +279,6 @@ namespace qmapcontrol
          */
         void requestRedraw() const;
 
-    protected:
-        /* Helper functions */
-
-        qreal sqr(qreal x) const { return x * x; }
-        qreal dist2(qreal vx, qreal vy, qreal wx, qreal wy) const {
-            return sqr(vx - wx) + sqr(vy - wy);
-        }
-        qreal dist2(const QPointF &v, const QPointF &w) const {
-            return dist2(v.x(), v.y(), w.x(), w.y());
-        }
-
-
     private:
         //! Disable copy constructor.
         Geometry(const Geometry&); /// @todo remove once MSVC supports default/delete syntax.
@@ -311,6 +295,9 @@ namespace qmapcontrol
 
         /// Maximum zoom level to show this geometry.
         int m_zoom_maximum;
+
+        /// z-index for rendering order
+        int m_z_index;
 
         /// Whether the geometry is visible.
         bool m_visible;
@@ -340,8 +327,5 @@ namespace qmapcontrol
         double m_metadata_displayed_alignment_offset_px;
 
         AncillaryData *mAncillaryData;
-
-        bool mSelected;
-        Flags mFlags;
     };
 }

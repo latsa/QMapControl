@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<trajectory>
+   <waypoint lat="33.1128" lon="34.6422" alt="0"/>
+   <waypoint lat="33.0139" lon="34.4341" alt="0"/>
+   <waypoint lat="23.5327" lon="33.998" alt="0"/>
+   <waypoint lat="13.3374" lon="36.7477" alt="0"/>
+   <waypoint lat="9.25049" lon="38.1259" alt="0"/>
+   <waypoint lat="-2.29614" lon="36.0935" alt="0"/>
+   <waypoint lat="-6.03149" lon="35.9602" alt="0"/>
+   <waypoint lat="-9.29443" lon="36.8708" alt="0"/>
+   <waypoint lat="-9.87671" lon="38.6426" alt="0"/>
+   <waypoint lat="-9.67896" lon="43.0609" alt="0"/>
+   <waypoint lat="-5.13062" lon="49.5359" alt="0"/>
+   <waypoint lat="1.54907" lon="51.0241" alt="0"/>
+   <waypoint lat="8.23975" lon="57.2464" alt="0"/>
+   <waypoint lat="10.7776" lon="57.8944" alt="0"/>
+   <waypoint lat="11.7554" lon="57.6542" alt="0"/>
+</trajectory>

@@ -3,17 +3,19 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd;qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="QMapControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AdapterRaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ESRIShapefile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Geometry.cpp">
@@ -61,16 +63,10 @@
     <ClCompile Include="Layer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LayerESRIShapefile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LayerGeometry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LayerMapAdapter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LayerRaster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MapAdapter.cpp">
@@ -80,9 +76,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MapAdapterGoogle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MapAdapterOpenSeaMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MapAdapterOSM.cpp">
@@ -103,9 +96,6 @@
     <ClCompile Include="NetworkManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PersistentCache.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Projection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -118,18 +108,12 @@
     <ClCompile Include="QProgressIndicator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RasterUtils.cpp">
+    <ClCompile Include="MapAdapterOpenSeaMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="QMapControl.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
-    <QtMoc Include="AdapterRaster.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ESRIShapefile.h">
       <Filter>Source Files</Filter>
     </QtMoc>
     <QtMoc Include="Geometry.h">
@@ -159,9 +143,6 @@
     <QtMoc Include="Layer.h">
       <Filter>Source Files</Filter>
     </QtMoc>
-    <QtMoc Include="LayerESRIShapefile.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
     <QtMoc Include="LayerGeometry.h">
       <Filter>Source Files</Filter>
     </QtMoc>
@@ -175,9 +156,6 @@
       <Filter>Source Files</Filter>
     </QtMoc>
     <QtMoc Include="MapAdapterGoogle.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
-    <QtMoc Include="MapAdapterOpenSeaMap.h">
       <Filter>Source Files</Filter>
     </QtMoc>
     <QtMoc Include="MapAdapterOSM.h">
@@ -196,6 +174,9 @@
       <Filter>Source Files</Filter>
     </QtMoc>
     <QtMoc Include="QProgressIndicator.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MapAdapterOpenSeaMap.h">
       <Filter>Source Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -221,16 +202,7 @@
     <ClInclude Include="GPS_Position.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="LayerRaster.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="m_constants.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="MapAdapterWMS.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PersistentCache.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Point.h">
@@ -246,9 +218,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="QuadTreeContainer.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RasterUtils.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

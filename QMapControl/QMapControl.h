@@ -1,28 +1,3 @@
-/*
-*
-* This file is part of QMapControl,
-* an open-source cross-platform map widget
-*
-* Copyright (C) 2007 - 2008 Kai Winter
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU Lesser General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU Lesser General Public License for more details.
-*
-* You should have received a copy of the GNU Lesser General Public License
-* along with QMapControl. If not, see <http://www.gnu.org/licenses/>.
-*
-* Contact e-mail: kaiwinter@gmx.de
-* Program URL   : http://qmapcontrol.sourceforge.net/
-*
-*/
-
 #pragma once
 
 // Qt includes.
@@ -59,51 +34,42 @@ namespace qmapcontrol
      * Layers can be added to this control.
      * QMapControl has to be instantiated with a QSizeF which sets the size the widget takes in a layout.
      * The given size is also the size which is assured to be filled with map images.
-     *
-     * @author Kai Winter <kaiwinter@gmx.de>
+     *    
      * @author Chris Stylianou <chris5287@gmail.com>
+     * @author Kai Winter <kaiwinter@gmx.de>
+     * @author Laszlo Soltesz <laca@gmx.se>
      */
-    class QMAPCONTROL_EXPORT QMapControl : public QWidget
-    {
-        Q_OBJECT
-    public:
-        //! Declares what actions mouse buttons have on the map.
-        enum class MouseButtonMode
-        {
-            /// @TODO add polygon support!
-
-            /// No action.
-            None,
-            /// Move the map.
-            Pan,
-            /// Draw a box.
-            DrawBox,
-            /// Pan box.
-            PanBox,
-            /// Selection box.
-            SelectBox,
-            /// Draw a line.
-            DrawLine,
-            /// Pan line.
-            PanLine,
-            /// Selection line.
-            SelectLine,
-            /// Draw an ellipse.
-            DrawEllipse,
-            /// Pan ellipse.
-            PanEllipse,
-            /// Selection ellipse.
-            SelectEllipse
-        };
+    class QMAPCONTROL_EXPORT QMapControl : 
+      public QWidget {
+      Q_OBJECT
 
     public:
-        //! QWidget constructor of QMapControl for use with QtDesigner.
+      //! Declares what actions mouse buttons have on the map.
+      enum class MouseButtonMode {
+         None,         // No action.
+         Pan,          // Move the map.
+         DrawBox,      // Draw a box.
+         PanBox,       // Pan box.
+         SelectBox,    // Select box.
+         DrawLine,     // Draw a line.
+         PanLine,      // Pan line.
+         SelectLine,   // Select line.
+         DrawEllipse,  // Draw an ellipse.
+         PanEllipse,   // Pan ellipse.
+         SelectEllipse,// Select ellipse.
+         DrawPolyline, // Draw a polyline.
+         PanPolyline,  // Pan polyline.
+         SelectPolyline// Select polyline.
+      };
+
+    public:
+        //! QWidget constructor for use with QtDesigner.
         /*!
          * The QMapControl is the widget which displays the maps.
          * @param parent QObject parent ownership.
          * @param window_flags QWidget window flags.
          */
-        QMapControl(QWidget* parent = nullptr, Qt::WindowFlags window_flags = Qt::WindowFlags());
+        QMapControl(QWidget* parent = 0, Qt::WindowFlags window_flags = 0);
 
         //! QMapControl constructor.
         /*!
@@ -112,50 +78,35 @@ namespace qmapcontrol
          * @param parent QObject parent ownership.
          * @param window_flags QWidget window flags.
          */
-        QMapControl(const QSizeF& size_px, QWidget* parent = nullptr, Qt::WindowFlags window_flags = Qt::WindowFlags());
+        QMapControl(const QSizeF& size_px, QWidget* parent = 0, Qt::WindowFlags window_flags = 0);
 
         //! Disable copy constructor.
-        ///QMapControl(const QMapControl&) = delete; @todo re-add once MSVC supports default/delete syntax.
+        QMapControl(const QMapControl&) = delete;
 
         //! Disable copy assignment.
-        ///QMapControl& operator=(const QMapControl&) = delete; @todo re-add once MSVC supports default/delete syntax.
+        QMapControl& operator=(const QMapControl&) = delete;
 
         //! Destructor.
         ~QMapControl();
-
-        /**
-         * @brief Apply a rotation to the graphics representation of the map.
-         * @param rotation the rotation in degrees
-         */
-        void setMapRotation(qreal rotation);
-
-        /**
-         * @brief Gets the actual map rotation
-         * @return map rotation in degrees
-         */
-        qreal mapRotation() const;
 
         // Settings.
         /*!
          * Set the displayed projection.
          * @param epsg The projection required.
          */
-        void setProjection(const projection::EPSG &epsg = projection::EPSG::SphericalMercator);
+        void setProjection(const projection::EPSG& epsg = projection::EPSG::SphericalMercator);
 
         /*!
          * Set the tile size used in pxiels.
          * @param tile_size_px The tile size in pixels required.
          */
-        void setTileSizePx(const int &tile_size_px = 256);
+        void setTileSizePx(const int& tile_size_px = 256);
 
         /*!
          * Set the background colour of the map control.
          * @param colour The background colour to set.
          */
-        void setBackgroundColour(const QColor &colour = Qt::transparent);
-
-        static const std::chrono::minutes PersistentCacheNoExpiration;
-        static const QDir PersistentCacheDefaultPath;
+        void setBackgroundColour(const QColor& colour = Qt::transparent);
 
         /*!
          * Enable persistent caching of map tiles.
@@ -164,28 +115,13 @@ namespace qmapcontrol
          * @param path The path where the images should be stored.
          * @param expiry The max age (in minutes) of an image before its removed and a new one is requested (0 to keep forever).
          */
-        void enablePersistentCache(const std::chrono::minutes &expiry = PersistentCacheNoExpiration,
-                                   const QDir &path = PersistentCacheDefaultPath);
-
-        /**
-         * @brief Starts the Persistent cache housekeeping. Scan the current cache for expired enties, and remove them.
-         * This function should be called just after the enablePersistentCache(), preferably in a separate thread using
-         * QtConcurrent for example.
-         * Indeed the ImageManager::persistentCacheFind only removes the files that are searched for, this means that
-         * even if a file has expired, it will remain in cache forever if never accessed.
-         */
-        void startPersistentCacheHousekeeping();
-
-        /**
-         * @brief Remove all the files in the persistent cache, regardless of the expiration.
-         */
-        void clearPersistentCache();
+        void enablePersistentCache(const std::chrono::minutes& expiry = std::chrono::minutes(0), const QDir& path = QDir::homePath() + QDir::separator() + "QMapControl.cache");
 
         /*!
          * Sets the proxy for HTTP connections.
          * @param proxy The proxy details.
          */
-        void setProxy(const QNetworkProxy &proxy);
+        void setProxy(const QNetworkProxy& proxy);
 
         /*!
          * Sets the proxy for HTTP connections.
@@ -262,6 +198,13 @@ namespace qmapcontrol
          * @param geometry The Geometry which should not followed anymore
          */
         void stopFollowingGeometry();
+
+        // Viewport management.
+        /*!
+         * Set the viewport size in pixels.
+         * @param size_px The viewport (visible-part of each layer) size in pixels.
+         */
+        void setViewportSize(const QSizeF& size_px);
 
         /*!
          * Fetches the visible viewport rect in world coordinates.
@@ -365,20 +308,14 @@ namespace qmapcontrol
          * @param enable Whether the zoom control should be displayed.
          * @param align_left Whether to align the zoom controls to left or right of the widget.
          */
-        void enableZoomControls(const bool &enable, const bool &align_left = true);
-
-        void setCenterPixmap(QPixmap);
-
-        void clearCenterPixmap();
-
-        QPixmap centerPixmap();
+        void enableZoomControls(const bool& enable, const bool& align_left = true);
 
         // Mouse management.
         /*!
          * Set whether the layers should handle mouse events.
          * @param enable Whether the layers should handle mouse events.
          */
-        void enableLayerMouseEvents(const bool &enable);
+        void enableLayerMouseEvents(const bool& enable);
 
         /*!
          * Fetches the left mouse button mode.
@@ -410,38 +347,38 @@ namespace qmapcontrol
          * Called when a mouse button is pressed down.
          * @param mouse_event The mouse event.
          */
-        void mousePressEvent(QMouseEvent* mouse_event) override;
+        void mousePressEvent(QMouseEvent* mouse_event);
 
         /*!
          * Called when a mouse button is released.
          * @param mouse_event The mouse event.
          */
-        void mouseReleaseEvent(QMouseEvent* mouse_event) override;
+        void mouseReleaseEvent(QMouseEvent* mouse_event);
 
         /*!
          * Called when a mouse button is double clicked.
          * @param mouse_event The mouse event.
          */
-        void mouseDoubleClickEvent(QMouseEvent* mouse_event) override;
+        void mouseDoubleClickEvent(QMouseEvent* mouse_event);
 
         /*!
          * Called when a mouse is moved.
          * @param mouse_event The mouse event.
          */
-        void mouseMoveEvent(QMouseEvent* mouse_event) override;
+        void mouseMoveEvent(QMouseEvent* mouse_event);
 
         /*!
          * Called when a mouse's wheel is scrolled.
          * @param wheel_event The mouse wheel event.
          */
-        void wheelEvent(QWheelEvent* wheel_event) override;
+        void wheelEvent(QWheelEvent* wheel_event);
 
         // Keyboard management.
         /*!
          * Called when a keyboard key is pressed.
          * @param key_event The keyboard key event.
          */
-        void keyPressEvent(QKeyEvent* key_event) override;
+        void keyPressEvent(QKeyEvent* key_event);
 
         // Drawing management.
         /*!
@@ -489,17 +426,14 @@ namespace qmapcontrol
          * @param map_focus_point_px The map focus point in pixels to use.
          * @return the map point in pixels.
          */
-        PointWorldPx
-        toPointWorldPx(const PointViewportPx &click_point_px, const PointWorldPx &map_focus_point_px) const;
+        PointWorldPx toPointWorldPx(const PointViewportPx& click_point_px, const PointWorldPx& map_focus_point_px) const;
 
         /*!
          * Converts a mouse click point in pixels to map point in coordinates (uses the current map focus point).
          * @param click_point_px The mouse click point in pixels to convert.
          * @return the map point in coordinates.
          */
-        PointWorldCoord toPointWorldCoord(const PointViewportPx &click_point_px) const;
-
-        QPointF localToRotatedPoint(QPointF point);
+        PointWorldCoord toPointWorldCoord(const PointViewportPx& click_point_px) const;
 
         /*!
          * Converts a mouse click point in pixels to map point in coordinates.
@@ -507,8 +441,7 @@ namespace qmapcontrol
          * @param map_focus_point_px The map focus point in pixels to use.
          * @return the map point in coordinates.
          */
-        PointWorldCoord
-        toPointWorldCoord(const PointViewportPx &click_point_px, const PointWorldPx &map_focus_point_px) const;
+        PointWorldCoord toPointWorldCoord(const PointViewportPx& click_point_px, const PointWorldPx& map_focus_point_px) const;
 
         /*!
          * Fetches the map focus point in pixels (location on map in relation to the center of the screen).
@@ -545,7 +478,7 @@ namespace qmapcontrol
          * Called by QWidget to redraw the current view to the QWidget display.
          * @param paint_event The paint event.
          */
-        void paintEvent(QPaintEvent* paint_event) override;
+        void paintEvent(QPaintEvent* paint_event);
 
         /*!
          * Draw the primary screen and "auto-moving" geometries to the pixmap.
@@ -651,40 +584,19 @@ namespace qmapcontrol
          * @param backbuffer_rect_px The updated backbuffer rect in pixels.
          * @param backbuffer_map_focus_px The updated backbuffer map foucs point in pixels.
          */
-        void updatedBackBuffer(QPixmap backbuffer_pixmap, RectWorldPx backbuffer_rect_px,
-                               PointWorldPx backbuffer_map_focus_px);
+        void updatedBackBuffer(QPixmap backbuffer_pixmap, RectWorldPx backbuffer_rect_px, PointWorldPx backbuffer_map_focus_px);
 
         /**
          * Signal emitted when the map foucus has changed
          * */
         void mapFocusPointChanged(PointWorldCoord);
 
-        void mapCourseChanged(qreal courseDegrees);
     private:
-        //! Disable copy constructor.
-        QMapControl(const QMapControl &); /// @todo remove once MSVC supports default/delete syntax.
-
-        //! Disable copy assignment.
-        QMapControl &operator=(const QMapControl &); /// @todo remove once MSVC supports default/delete syntax.
-
-        /**
-         * @brief The actual map rotation as applied through mMapTransformation. Used as cached value.
-         */
-        qreal mMapRotation = 0.0;
-        /**
-         * @brief The map transformation.
-         */
-        QTransform mMapTransformation;
-
-        QColor mBackgroundColor = Qt::white;
-
         /// Whether the scale should be visible.
         bool m_scalebar_enabled;
 
         /// Whether the crossharis should be visible.
         bool m_crosshairs_enabled;
-
-        QPixmap mCenterPixmap;
 
         /// List of layers (use getLayers() to access this for thread-safe read-only functionality).
         std::vector<std::shared_ptr<Layer>> m_layers;
@@ -698,8 +610,6 @@ namespace qmapcontrol
         /// The current following geometry signal/slot connection.
         QMetaObject::Connection m_following_geometry;
 
-        RectWorldPx backbuffer_rect_px;
-        QSize mBackbufferSize;
         /// The viewport (visible-part of each layer) size in pixels.
         QSizeF m_viewport_size_px;
 
@@ -795,19 +705,5 @@ namespace qmapcontrol
 
         /// Progress indicator to alert user to redrawing progress.
         QProgressIndicator m_progress_indicator;
-
-        QAtomicInt mAborted = false;
-
-        // Viewport management.
-        /*!
-         * Set the viewport size in pixels.
-         * @param size_px The viewport (visible-part of each layer) size in pixels.
-         */
-        void setViewportSize(const QSizeF& size_px);
-
-    protected:
-        void resizeEvent(QResizeEvent *event) override;
-
-        QTransform getMapTransform() const;
     };
 }

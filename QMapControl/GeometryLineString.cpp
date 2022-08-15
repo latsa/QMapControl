@@ -27,7 +27,6 @@
 
 // Local includes.
 #include "Projection.h"
-#include "LayerGeometry.h"
 
 namespace qmapcontrol
 {
@@ -43,34 +42,10 @@ namespace qmapcontrol
     {
     }
 
-    const std::vector<PointWorldCoord> &GeometryLineString::points() const
+    std::vector<PointWorldCoord> GeometryLineString::points() const
     {
         // Return the points.
         return m_points;
-    }
-
-    std::vector<PointWorldCoord> GeometryLineString::quadtree_points() const
-    {
-        static const int N=11;
-
-        std::vector<PointWorldCoord> coords;
-        auto n = m_points.size();
-
-        if (n < 2)
-            return m_points;
-
-        for (int i = 1; i < n; ++i) {
-            double dx = m_points[i].longitude() - m_points[i-1].longitude();
-            double dy = m_points[i].latitude() - m_points[i-1].latitude();
-
-            for (int j = 0; j <=N; ++j) {
-                PointWorldCoord pt(m_points[i-1].longitude() + j * dx / N, m_points[i-1].latitude() + j * dy / N);
-
-                coords.push_back(pt);
-            }
-        }
-
-        return coords;
     }
 
     void GeometryLineString::addPoint(const PointWorldCoord& point)
@@ -109,76 +84,42 @@ namespace qmapcontrol
 
     bool GeometryLineString::touches(const Geometry* geometry, const int& controller_zoom) const
     {
-        Q_UNUSED(geometry);
-        Q_UNUSED(controller_zoom);
-        bool return_touches(false);
-        return return_touches;
-    }
+        /// @todo change to world coordinates.
 
-    bool GeometryLineString::hitTestPoint(const PointWorldCoord &point, qreal fuzzyfactor, int controller_zoom) const
-    {
-        Q_UNUSED(controller_zoom);
-
+        // Default return success.
         bool return_touches(false);
 
-        // Check the geometry is visible.
-        if(isVisible(controller_zoom))
-        {
-            qreal dx = fuzzyfactor;
-            dx = dx*dx;
-            qreal d;
+//        // Clear previous touches result.
+//        m_touched_points.clear();
 
-            for (size_t i = 1; i < m_points.size(); ++i) {
-                d = distToSegmentSquared(point.rawPoint(), m_points[i].rawPoint(), m_points[i-1].rawPoint());
+//        // Check the geometry is visible.
+//        if(isVisible(controller_zoom))
+//        {
+//            // Loop through each point.
+//            for(const auto& point : m_points)
+//            {
+//                // Does the touch area contain the point?
+//                if(point->touches(area_px, controller_zoom))
+//                {
+//                    // Add the point to the touches list.
+//                    m_touched_points.push_back(point);
 
-                if (d <= std::abs(fuzzyfactor)) {
-                    return_touches = true;
-                    break;
-                }
-            }
+//                    // Set that we have touched.
+//                    return_touches = true;
+//                }
+//            }
 
-            // Did we find at least one geometry touching?
-            if(return_touches)
-            {
-                // Emit that the geometry has been clicked.
-                emit geometryClicked(this);
-            }
-        }
+//            // Did we find at least one geometry touching?
+//            if(return_touches)
+//            {
+//                // Emit that the geometry has been clicked.
+//                emit geometryClicked(this);
+//            }
+//        }
 
         // Return our success.
         return return_touches;
     }
-
-    /*
-    bool GeometryLineString::touches(const Geometry* geometry, const int& controller_zoom) const
-    {
-        bool return_touches(false);
-
-        // Check the geometry is visible.
-        if(isVisible(controller_zoom))
-        {
-            qreal dx = mLayer->getFuzzyFactorPx();
-            dx = dx*dx;
-            qreal d;
-
-            for (int i = 1; i < m_points.size() - 1; ++i) {
-                d = distToSegmentSquared()
-
-                    return_touches = true;
-
-            }
-
-            // Did we find at least one geometry touching?
-            if(return_touches)
-            {
-                // Emit that the geometry has been clicked.
-                emit geometryClicked(this);
-            }
-        }
-
-        // Return our success.
-        return return_touches;
-    }*/
 
     void GeometryLineString::draw(QPainter& painter, const RectWorldCoord& backbuffer_rect_coord, const int& controller_zoom)
     {

@@ -33,8 +33,6 @@
 #include "Geometry.h"
 #include "Point.h"
 
-#include <cmath>
-
 namespace qmapcontrol
 {
     //! A collection of Point objects to describe a line.
@@ -72,9 +70,7 @@ namespace qmapcontrol
          * Fetches the list of points that form a line.
          * @return the list of points that form a line.
          */
-        const std::vector<PointWorldCoord> &points() const;
-
-        std::vector<PointWorldCoord> quadtree_points() const;
+        std::vector<PointWorldCoord> points() const;
 
         /*!
          * Add a point to the end of the line.
@@ -104,8 +100,6 @@ namespace qmapcontrol
          */
         bool touches(const Geometry* geometry, const int& controller_zoom) const final;
 
-        bool hitTestPoint(const PointWorldCoord &point, qreal fuzzyfactor, int controller_zoom) const final;
-
         /*!
          * Draws the geometry to a pixmap using the provided painter.
          * @param painter The painter that will draw to the pixmap.
@@ -121,25 +115,7 @@ namespace qmapcontrol
         //! Disable copy assignment.
         GeometryLineString& operator=(const GeometryLineString&); /// @todo remove once MSVC supports default/delete syntax.
 
-        /* Helper functions */
-        qreal distToSegmentSquared(qreal px, qreal py, qreal vx, qreal vy, qreal wx, qreal wy) const {
-          qreal l2 = dist2(vx,vy, wx,wy);
-          if (l2 < 1e-6) return dist2(px,py, vx,vy);
-          qreal t = ((px - vx) * (wx - vx) + (py - vy) * (wy - vy)) / l2;
-          if (t < 0) return dist2(px,py, vx,vy);
-          if (t > 1) return dist2(px, py, wx, wy);
-          return dist2(px, py,
-                       vx + t * (wx - vx),
-                       vy + t * (wy - vy));
-        }
-
-        qreal distToSegmentSquared(const QPointF& p, const QPointF & v,const QPointF &w) const {
-            return distToSegmentSquared(p.x(), p.y(), v.x(), v.y(), w.x(), w.y());
-        }
-
-
-    protected:
-        LayerGeometry *mLayer;
+    private:
         /// The points that the linestring is made up of.
         std::vector<PointWorldCoord> m_points;
     };

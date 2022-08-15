@@ -31,39 +31,20 @@ namespace qmapcontrol
         : m_geometry_type(geometry_type),
           m_zoom_minimum(zoom_minimum),
           m_zoom_maximum(zoom_maximum),
+          m_z_index(0),
           m_visible(true),
           m_metadata_displayed_key(""),
           m_metadata_displayed_zoom_minimum(10),
           m_metadata_displayed_alignment_type(AlignmentType::TopRight),
           m_metadata_displayed_alignment_offset_px(5.0),
-          mAncillaryData(0),
-          mSelected(false),
-          mFlags(0)
+          mAncillaryData(0)
     {
 
     }
 
-    Geometry::Flags Geometry::flags() const
-    {
-        return mFlags;
-    }
+    int Geometry::zIndex() const { return m_z_index; }
 
-    void Geometry::setFlags(const Flags &value)
-    {
-        mFlags = value;
-    }
-
-    bool Geometry::selected() const
-    {
-        return mSelected;
-    }
-
-    void Geometry::setSelected(bool value)
-    {
-        if (mFlags & IsSelectable)
-            mSelected = value;
-    }
-
+    void Geometry::setZIndex(int z_index) { m_z_index = z_index; }
 
     const Geometry::GeometryType& Geometry::geometryType() const
     {

@@ -4,8 +4,6 @@
 #include "GeometryPolygon.h"
 #include "Projection.h"
 
-#include <cmath>
-
 namespace qmapcontrol
 {
     GeometryPoint::GeometryPoint(const qreal& longitude, const qreal& latitude, const int& zoom_minimum, const int& zoom_maximum)
@@ -65,8 +63,6 @@ namespace qmapcontrol
 
     bool GeometryPoint::touches(const Geometry* geometry, const int& controller_zoom) const
     {
-        qDebug() << " Point touches";
-
         // Default return success.
         bool return_touches(false);
 
@@ -120,13 +116,6 @@ namespace qmapcontrol
 
         // Return our success.
         return return_touches;
-    }
-
-    bool GeometryPoint::hitTestPoint(const PointWorldCoord &point, qreal fuzzyfactor, int controller_zoom) const
-    {
-        Q_UNUSED(controller_zoom);
-
-        return dist2(point.rawPoint(), m_point_coord.rawPoint()) <= std::abs(fuzzyfactor);
     }
 
     void GeometryPoint::draw(QPainter& painter, const RectWorldCoord& backbuffer_rect_coord, const int& controller_zoom)

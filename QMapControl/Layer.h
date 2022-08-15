@@ -54,15 +54,15 @@ namespace qmapcontrol
         Q_OBJECT
     public:
         //! Layer types.
-        enum class LayerType {
+        enum class LayerType
+        {
+            LayerUnknown,
             /// Layer that draws a MapAdapter.
             LayerMapAdapter,
             /// Layer that draws Geometries.
             LayerGeometry,
             /// Layer that draws ESRI Shapefiles.
-            LayerESRIShapefile,
-            /// Temporary "unknown" layer.
-            LayerUnknown
+            LayerESRIShapefile
         };
 
     protected:

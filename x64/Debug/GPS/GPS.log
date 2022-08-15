@@ -1,0 +1,6 @@
+﻿  GPS.cpp
+  gps_neo.cpp
+  main.cpp
+  moc_gps.cpp
+  moc_gps_neo.cpp
+  GPS.vcxproj -> D:\Projects\Projects (Qt)\maps\QMapControl\Experiment\x64\Debug\GPS.exe

@@ -1,10 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_PRINTSUPPORT_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_XML_LIB;QT_NETWORK_LIB;QT_CORE_LIB</Qt_DEFINES_>
-<Qt_INCLUDEPATH_>C:\Users\laca\source\repos\QMapControl\x64\Debug\qmake\temp;C:\Qt\5.15.1\msvc2019_64\include;C:\Qt\5.15.1\msvc2019_64\include\QtPrintSupport;C:\Qt\5.15.1\msvc2019_64\include\QtWidgets;C:\Qt\5.15.1\msvc2019_64\include\QtGui;C:\Qt\5.15.1\msvc2019_64\include\QtANGLE;C:\Qt\5.15.1\msvc2019_64\include\QtXml;C:\Qt\5.15.1\msvc2019_64\include\QtNetwork;C:\Qt\5.15.1\msvc2019_64\include\QtCore;C:\Users\laca\source\repos\QMapControl\x64\Debug\qmake\temp;D:\Programs\VulkanSDK\1.3.216.0\include;C:\Qt\5.15.1\msvc2019_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
+<Qt_DEFINES_>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_WIDGETS_LIB;QT_GUI_LIB;QT_NETWORKAUTH_LIB;QT_NETWORK_LIB;QT_CORE_LIB</Qt_DEFINES_>
+<Qt_INCLUDEPATH_>"D:\Projects\Projects (Qt)\maps\QMapControl\QMapControl\x64\Debug\qmake\temp";C:\Qt\5.15.1\msvc2019_64\include;C:\Qt\5.15.1\msvc2019_64\include\QtWidgets;C:\Qt\5.15.1\msvc2019_64\include\QtGui;C:\Qt\5.15.1\msvc2019_64\include\QtANGLE;C:\Qt\5.15.1\msvc2019_64\include\QtNetworkAuth;C:\Qt\5.15.1\msvc2019_64\include\QtNetwork;C:\Qt\5.15.1\msvc2019_64\include\QtCore;"D:\Projects\Projects (Qt)\maps\QMapControl\QMapControl\x64\Debug\qmake\temp";D:\Programs\VulkanSDK\1.3.216.0\include;C:\Qt\5.15.1\msvc2019_64\mkspecs\win32-msvc</Qt_INCLUDEPATH_>
 <Qt_STDCPP_></Qt_STDCPP_>
 <Qt_CL_OPTIONS_>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus</Qt_CL_OPTIONS_>
-<Qt_LIBS_>C:\Qt\5.15.1\msvc2019_64\lib\Qt5PrintSupportd.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Widgetsd.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Guid.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Xmld.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Networkd.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Cored.lib;C:\Qt\5.15.1\msvc2019_64\lib\qtmaind.lib;shell32.lib</Qt_LIBS_>
+<Qt_LIBS_>C:\Qt\5.15.1\msvc2019_64\lib\Qt5Widgetsd.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Guid.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5NetworkAuthd.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Networkd.lib;C:\Qt\5.15.1\msvc2019_64\lib\Qt5Cored.lib;C:\Qt\5.15.1\msvc2019_64\lib\qtmaind.lib;shell32.lib</Qt_LIBS_>
 <Qt_LINK_OPTIONS_>"/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"</Qt_LINK_OPTIONS_>
 <QMake_QT_SYSROOT_></QMake_QT_SYSROOT_>
 <QMake_QT_INSTALL_PREFIX_>C:/Qt/5.15.1/msvc2019_64</QMake_QT_INSTALL_PREFIX_>
@@ -32,11 +32,11 @@
 <QMake_QMAKE_VERSION_>3.1</QMake_QMAKE_VERSION_>
 <QMake_QT_VERSION_>5.15.1</QMake_QT_VERSION_>
 <Qt_INCLUDEPATH_
-      >$(Qt_INCLUDEPATH_);C:\Users\laca\source\repos\QMapControl\x64\Debug\QMapControl\moc</Qt_INCLUDEPATH_>
+      >$(Qt_INCLUDEPATH_);D:\Projects\Customers\Offshore Monitoring\Projects\MARINA\Builds\obj\x64\Debug\QMapControl\moc</Qt_INCLUDEPATH_>
     <QtBkup_QtInstall
       >5.15.1</QtBkup_QtInstall>
     <QtBkup_QtModules
-      >core;xml;network;gui;widgets;printsupport</QtBkup_QtModules>
+      >core;network;gui;widgets;networkauth</QtBkup_QtModules>
     <QtBkup_QtPathBinaries
       >bin</QtBkup_QtPathBinaries>
     <QtBkup_QtPathLibraryExecutables

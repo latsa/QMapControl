@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Interfaces">
+      <UniqueIdentifier>{a770ee97-5e4d-4757-9e25-9e829699eba9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="QMapWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GPSSimulator\GPSSimulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="qmapwidget_global.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\QMapControl\MapAdapterWMS.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\QMapControl\GeometryPointArrow.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\QMapControl\GeometryPointCircle.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\QMapControl\GeometryPointImage.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\QMapControl\GeometryPointImageScaled.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\QMapControl\GeometryPolygonImage.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="QMapWidget.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\Geometry.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\QMapControl.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\Layer.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\GPSSimulator\GPSSimulator.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapterYahoo.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapterGoogle.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapterTile.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\LayerMapAdapter.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapter.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapterBing.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapterOSM.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapterOTM.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\GeometryLineString.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\GeometryPoint.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\GeometryPointShape.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\GeometryPointShapeScaled.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\GeometryPolygon.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\GeometryWidget.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\LayerGeometry.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\MapAdapterOpenSeaMap.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+  </ItemGroup>
+</Project>

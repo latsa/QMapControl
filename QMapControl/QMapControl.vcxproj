@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{464DDE48-5689-4A13-A79F-D08F2522DF74}</ProjectGuid>
+    <ProjectGuid>{066257F5-BA85-4B2B-87B3-087B2B198DAA}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -32,12 +32,12 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>5.15.1</QtInstall>
-    <QtModules>core;xml;network;gui;widgets;printsupport</QtModules>
+    <QtModules>core;network;gui;widgets;networkauth</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>5.15.1</QtInstall>
-    <QtModules>core;xml;network;gui;widgets;printsupport</QtModules>
+    <QtModules>core;network;gui;widgets;networkauth</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -55,28 +55,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(OSM_MARINA_BUILD_ROOT)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(OSM_MARINA_BUILD_ROOT)\obj\$(Platform)\$(Configuration)\$(TargetName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <IntDir>$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(OSM_MARINA_BUILD_ROOT)\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(OSM_MARINA_BUILD_ROOT)\obj\$(Platform)\$(Configuration)\$(TargetName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(WINBUILDS_ROOT)..\gdal\gdal\gcore;$(WINBUILDS_ROOT)..\gdal\gdal\port;$(WINBUILDS_ROOT)..\gdal\gdal\ogr;$(WINBUILDS_ROOT)..\gdal\gdal\ogr\ogrsf_frmts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>ws2_32.lib;Wldap32.lib;GdalDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(WINBUILDS_ROOT)build_msvc16_$(Platform)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(WINBUILDS_ROOT)..\gdal\gdal\gcore;$(WINBUILDS_ROOT)..\gdal\gdal\port;$(WINBUILDS_ROOT)..\gdal\gdal\ogr;$(WINBUILDS_ROOT)..\gdal\gdal\ogr\ogrsf_frmts;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>ws2_32.lib;Wldap32.lib;GdalDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(WINBUILDS_ROOT)build_msvc16_$(Platform)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
@@ -107,16 +101,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MapAdapterOpenSeaMap.cpp" />
     <ClCompile Include="QProgressIndicator.cpp" />
-    <ClCompile Include="RasterUtils.cpp" />
+    <QtMoc Include="MapAdapterOpenSeaMap.h" />
     <ClInclude Include="QuadTreeContainer.h" />
-    <ClInclude Include="RasterUtils.h" />
     <QtMoc Include="QProgressIndicator.h" />
-    <QtMoc Include="AdapterRaster.h" />
-    <QtMoc Include="ESRIShapefile.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </QtMoc>
     <QtMoc Include="Geometry.h" />
     <QtMoc Include="GeometryLineString.h" />
     <QtMoc Include="GeometryPoint.h" />
@@ -132,36 +121,23 @@
     <ClInclude Include="GPS_Position.h" />
     <QtMoc Include="ImageManager.h" />
     <QtMoc Include="Layer.h" />
-    <QtMoc Include="LayerESRIShapefile.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </QtMoc>
     <QtMoc Include="LayerGeometry.h" />
     <QtMoc Include="LayerMapAdapter.h" />
-    <ClInclude Include="LayerRaster.h" />
     <QtMoc Include="MapAdapter.h" />
     <QtMoc Include="MapAdapterBing.h" />
     <QtMoc Include="MapAdapterGoogle.h" />
-    <QtMoc Include="MapAdapterOpenSeaMap.h" />
     <QtMoc Include="MapAdapterOSM.h" />
     <QtMoc Include="MapAdapterOTM.h" />
     <QtMoc Include="MapAdapterTile.h" />
     <ClInclude Include="MapAdapterWMS.h" />
     <QtMoc Include="MapAdapterYahoo.h" />
-    <ClInclude Include="m_constants.h" />
     <QtMoc Include="NetworkManager.h" />
-    <ClInclude Include="PersistentCache.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="ProjectionEquirectangular.h" />
     <ClInclude Include="ProjectionSphericalMercator.h" />
     <ClInclude Include="qmapcontrol_global.h" />
     <QtMoc Include="QMapControl.h" />
-    <ClCompile Include="AdapterRaster.cpp" />
-    <ClCompile Include="ESRIShapefile.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="GeometryLineString.cpp" />
     <ClCompile Include="GeometryPoint.cpp" />
@@ -177,24 +153,17 @@
     <ClCompile Include="GPS_Position.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="Layer.cpp" />
-    <ClCompile Include="LayerESRIShapefile.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="LayerGeometry.cpp" />
     <ClCompile Include="LayerMapAdapter.cpp" />
-    <ClCompile Include="LayerRaster.cpp" />
     <ClCompile Include="MapAdapter.cpp" />
     <ClCompile Include="MapAdapterBing.cpp" />
     <ClCompile Include="MapAdapterGoogle.cpp" />
-    <ClCompile Include="MapAdapterOpenSeaMap.cpp" />
     <ClCompile Include="MapAdapterOSM.cpp" />
     <ClCompile Include="MapAdapterOTM.cpp" />
     <ClCompile Include="MapAdapterTile.cpp" />
     <ClCompile Include="MapAdapterWMS.cpp" />
     <ClCompile Include="MapAdapterYahoo.cpp" />
     <ClCompile Include="NetworkManager.cpp" />
-    <ClCompile Include="PersistentCache.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="ProjectionEquirectangular.cpp" />
     <ClCompile Include="ProjectionSphericalMercator.cpp" />

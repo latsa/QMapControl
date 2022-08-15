@@ -32,12 +32,11 @@
 #include <QtGui/QPen>
 
 // GDAL includes.
-#include <ogrsf_frmts.h>
+#include <gdal/ogrsf_frmts.h>
 
 // STL includes.
 #include <memory>
 #include <string>
-#include <functional>
 
 // Local includes.
 #include "qmapcontrol_global.h"
@@ -63,48 +62,66 @@ namespace qmapcontrol
          * @param zoom_minimum The minimum zoom level to show this ESRI Shapefile at.
          * @param zoom_maximum The maximum zoom level to show this ESRI Shapefile at.
          */
-        explicit ESRIShapefile(const std::string &file_path, const std::string &layer_name, const int &zoom_minimum = 0,
-                               const int &zoom_maximum = 17);
+        explicit ESRIShapefile(const std::string& file_path, const std::string& layer_name, const int& zoom_minimum = 0, const int& zoom_maximum = 17);
 
-        explicit ESRIShapefile(GDALDataset *datasource, const std::string &layer_name, const int &zoom_minimum = 0,
-                               const int &zoom_maximum = 17);
+        explicit ESRIShapefile(OGRDataSource *datasource, const std::string& layer_name, const int& zoom_minimum = 0, const int& zoom_maximum = 17);
 
         //! Destructor.
         virtual ~ESRIShapefile();
-
-        /**
-         * @brief Prevents the dataset from being destroyed when the object is freed.
-         * If another object is destroying the dataset, this would result in a double free error.
-         * This prevents the error from happening.
-         */
-        void releaseDatasetOwnership()
-        {
-            hasDatasetOwnership = false;
-        }
 
         /*!
          * Fetches the pen to draw the polygon with (outline).
          * @return the QPen to used for drawing.
          */
-        const QPen &getPen() const;
+        const QPen& getPenPolygon() const;
 
         /*!
          * Sets the pen to draw the polygon with (outline).
          * @param pen The QPen to used for drawing.
          */
-        void setPen(QPen pen);
+        void setPenPolygon(const std::shared_ptr<QPen>& pen);
+
+        /*!
+         * Sets the pen to draw the polygon with (outline).
+         * @param pen The QPen to used for drawing.
+         */
+        void setPenPolygon(const QPen& pen);
 
         /*!
          * Fetches the brush to draw the polygon with (fill).
          * @return the QBrush to used for drawing.
          */
-        const QBrush &getBrush() const;
+        const QBrush& getBrushPolygon() const;
 
         /*!
          * Sets the brush to draw the polygon with (fill).
          * @param brush The QBrush to used for drawing.
          */
-        void setBrush(QBrush brush);
+        void setBrushPolygon(const std::shared_ptr<QBrush>& brush);
+
+        /*!
+         * Sets the brush to draw the polygon with (fill).
+         * @param brush The QBrush to used for drawing.
+         */
+        void setBrushPolygon(const QBrush& brush);
+
+        /*!
+         * Fetches the pen to draw the linestring with (outline).
+         * @return the QPen to used for drawing.
+         */
+        const QPen& getPenLineString() const;
+
+        /*!
+         * Sets the pen to draw the linestring with (outline).
+         * @param pen The QPen to used for drawing.
+         */
+        void setPenLineString(const std::shared_ptr<QPen>& pen);
+
+        /*!
+         * Sets the pen to draw the linestring with (outline).
+         * @param pen The QPen to used for drawing.
+         */
+        void setPenLineString(const QPen& pen);
 
         /*!
          * Draws ESRI Shapefiles to a pixmap using the provided painter.
@@ -112,32 +129,7 @@ namespace qmapcontrol
          * @param backbuffer_rect_px Only draw geometries that are contained in the backbuffer rect (pixels).
          * @param controller_zoom The current controller zoom.
          */
-        void draw(QPainter &painter, const RectWorldPx &backbuffer_rect_px, const int &controller_zoom) const;
-
-        void setAttributeFilter(std::string filter);
-
-        void clearAttributeFilter();
-
-        using FeaturePainterSetupFunction = std::function<void(OGRFeature *, QPainter &)>;
-
-        void setFeaturePainterSetupFunction(FeaturePainterSetupFunction function);
-
-        /**
-         * @brief Set the dimension of the Points geometries
-         * @param sz Size of the Circle/Ellipse representing a Point Geometry
-         */
-        void setPointGeometrySize(QSize sz)
-        {
-            mPointGeometrySize = sz;
-            requestRedraw();
-        }
-
-        QSize getPointGeometrySize() const
-        {
-            return mPointGeometrySize;
-        }
-
-        std::vector<OGRFeature *> findFeatureByRect(RectWorldCoord);
+        void draw(QPainter& painter, const RectWorldPx& backbuffer_rect_px, const int& controller_zoom) const;
 
     protected:
 
@@ -147,14 +139,9 @@ namespace qmapcontrol
          * @param painter The painter that will draw to the pixmap.
          * @param controller_zoom The current controller zoom.
          */
-        virtual void drawFeature(OGRFeature *ogr_feature, QPainter &painter, const int &controller_zoom) const;
-
-        void createProjections(OGRSpatialReference *) const;
-
-        void toWorldCoords(OGRPoint &ogr) const;
+        virtual void drawFeature(OGRFeature* ogr_feature, QPainter& painter, const int& controller_zoom) const;
 
     signals:
-
         /*!
          * Signal emitted when a change has occurred that requires the layer to be redrawn.
          */
@@ -162,10 +149,7 @@ namespace qmapcontrol
 
     private:
         /// The OGR data set of the ESRI Shapefile.
-        GDALDataset *m_ogr_data_set;
-        bool hasDatasetOwnership = true;
-        mutable OGRCoordinateTransformation *mTransformation = nullptr;       /**< Transformation from Data Source to World (Local) */
-        mutable OGRCoordinateTransformation *mInvTransformation = nullptr;       /**< Transformation from World (Local) to Data Source */
+        OGRDataSource* m_ogr_data_set;
 
         /// The layer name.
         std::string m_layer_name;
@@ -177,15 +161,12 @@ namespace qmapcontrol
         int m_zoom_maximum;
 
         /// The pen to use when drawing a polygon.
-        QPen mPen;
+        mutable std::shared_ptr<QPen> m_pen_polygon;
 
         /// The brush to use when drawing a polygon.
-        QBrush mBrush;
+        mutable std::shared_ptr<QBrush> m_brush_polygon;
 
-        QSize mPointGeometrySize = QSize{10, 10};
-
-        std::string attributeFilter;
-
-        FeaturePainterSetupFunction featurePainterSetupFunction = nullptr;
+        /// The pen to use when drawing a linestring.
+        mutable std::shared_ptr<QPen> m_pen_linestring;
     };
 }

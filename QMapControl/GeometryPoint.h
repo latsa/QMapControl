@@ -105,8 +105,6 @@ namespace qmapcontrol
          */
         virtual bool touches(const Geometry* geometry, const int& controller_zoom) const override;
 
-        bool hitTestPoint(const PointWorldCoord &point, qreal fuzzyfactor, int controller_zoom) const override;
-
         /*!
          * Draws the geometry to a pixmap using the provided painter.
          * @param painter The painter that will draw to the pixmap.
