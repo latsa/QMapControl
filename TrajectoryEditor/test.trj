@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE osm-trajectory>
+<trajectory version="1.0">
+   <waypoint lat="28.072" lon="-68.6426" alt="0"/>
+   <waypoint lat="39.0277" lon="-50.0098" alt="0"/>
+   <waypoint lat="40.1117" lon="-35.0684" alt="0"/>
+   <waypoint lat="29.7644" lon="-22.5879" alt="0"/>
+</trajectory>

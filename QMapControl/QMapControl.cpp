@@ -910,6 +910,7 @@ namespace qmapcontrol
 
             // Else... pass the key press event to the QWidget to process.
             default:
+                emit keyPressed(key_event);
                 QWidget::keyPressEvent(key_event);
                 break;
         }

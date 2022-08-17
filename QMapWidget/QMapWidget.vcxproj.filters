@@ -52,15 +52,6 @@
     <QtMoc Include="QMapWidget.h">
       <Filter>Source Files</Filter>
     </QtMoc>
-    <QtMoc Include="..\QMapControl\Geometry.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\QMapControl\QMapControl.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
-    <QtMoc Include="..\QMapControl\Layer.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
     <QtMoc Include="..\GPSSimulator\GPSSimulator.h">
       <Filter>Source Files</Filter>
     </QtMoc>
@@ -112,5 +103,19 @@
     <QtMoc Include="..\QMapControl\MapAdapterOpenSeaMap.h">
       <Filter>Source Files\Interfaces</Filter>
     </QtMoc>
+    <QtMoc Include="..\QMapControl\Layer.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\Geometry.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+    <QtMoc Include="..\QMapControl\QMapControl.h">
+      <Filter>Source Files\Interfaces</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\Resources\Resources.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

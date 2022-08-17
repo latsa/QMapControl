@@ -532,6 +532,8 @@ namespace qmapcontrol
         void updatePrimaryScreen(QPixmap backbuffer_pixmap, RectWorldPx backbuffer_rect_px, PointWorldPx backbuffer_map_focus_px);
 
     signals:
+        void keyPressed(QKeyEvent* key_event);
+
         // Geometry management.
         /*!
          * Signal emitted when a geometry is clicked.

@@ -7,6 +7,7 @@ TrajectoryEditor::TrajectoryEditor(QWidget *parent)
 
     //m_mapWidget = new QMapWidget(parent);
     m_mapWidget = ui.mapWidget;
+    connect(m_mapWidget,SIGNAL(StatusBarMessage(const QString&, int)), this,SLOT(StatusBarMessage(const QString&, int)));
 
     createActions();
     createStatusBar();
@@ -238,4 +239,8 @@ void TrajectoryEditor::about() {
             tr("The <b>Trajectory Editor</b> application allows creating and "
                "editing trajectory files to be used as input by the MARINA "
                "Virtual GNSS Device."));
+}
+
+void TrajectoryEditor::StatusBarMessage(const QString& msg, int timeout) {
+   statusBar()->showMessage(msg, timeout);
 }

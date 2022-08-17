@@ -1,25 +1,29 @@
 #include "GPSSimulator.h"
 #include <QTimer>
-#include <random>
-
-namespace {
-   qreal m_x = 1.0; // The current x point.
-   qreal m_y = 1.0; // The current y point.
-   std::random_device m_rd;  // A random device.
-   std::mt19937 m_mt(m_rd());// A random engine.
-   std::uniform_int_distribution<int> m_dist(0, 10);// A uniform distribution.
-}
+#include <QGeoCoordinate>
 
 GPSSimulator::GPSSimulator(QObject *parent)
-   : QObject(parent), m_running(false) {
+   : QObject(parent) {
 }
 
-void GPSSimulator::start() {
+void GPSSimulator::start(const QPointF& point1, const QPointF& point2, double speed) {
    if (m_running)
       return;
+   m_x = point1.x();
+   m_y = point1.y();
+
+   m_dx = point2.x() - point1.x();
+   m_dy = point2.y() - point1.y();
+   m_speed = speed * 1852.0 / 3600.0; // convert knots to m/s
+
+   m_steps = distance(point1, point2) / m_speed * m_freq;
+   m_current_step = 0;
+
+   m_dx_inc = m_dx / m_steps;
+   m_dy_inc = m_dy / m_steps;
 
    m_running = true;
-   QTimer::singleShot(40 , this, SLOT(tick())); //25Hz
+   QTimer::singleShot(1000.0/m_freq , this, SLOT(tick())); //25Hz
 }
 
 void GPSSimulator::stop() {
@@ -27,14 +31,23 @@ void GPSSimulator::stop() {
 }
 
 void GPSSimulator::tick() {
+   m_x += m_dx_inc;
+   m_y += m_dy_inc;
+   emit positionChanged(PointWorldCoord(m_x, m_y));
 
-   if (0 == m_dist(m_mt)) {
-      m_x += 0.1;
-      m_y += 0.1;
-
-      emit positionChanged(PointWorldCoord(m_x ,m_y));
-   }
+   m_current_step++;
+   if (m_current_step >= m_steps)
+      m_running = false;
 
    if (m_running)
-        QTimer::singleShot(40, this, SLOT(tick()));
+        QTimer::singleShot(1000.0 / m_freq, this, SLOT(tick()));
+   else {
+      emit stopped();
+   }
+}
+
+qreal GPSSimulator::distance(const QPointF& point1, const QPointF& point2) {
+   QGeoCoordinate gc1(point1.y(), point1.x());
+   QGeoCoordinate gc2(point2.y(), point2.x());
+   return gc1.distanceTo(gc2);
 }

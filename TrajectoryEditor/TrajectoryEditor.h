@@ -23,6 +23,7 @@ private slots:
    bool saveAs();
    void about();
    void quit();
+   void StatusBarMessage(const QString& msg, int timeout);
 
 private:
    Ui::TrajectoryEditorClass ui;
@@ -34,6 +35,6 @@ private:
    void setCurrentFile(const QString& fileName);
    bool confirmSave();
 
-   QMapWidget* m_mapWidget;
+   QMapWidget* m_mapWidget = Q_NULLPTR;
    QString m_curFile;
 };

@@ -301,7 +301,7 @@ namespace qmapcontrol
         if(isMouseEventsEnabled() && isVisible(controller_zoom) && mouse_event->type() == QEvent::MouseButtonPress)
         {
             // Is this a left-click event?
-            if(mouse_event->button() == Qt::LeftButton)
+            // if(mouse_event->button() == Qt::LeftButton)
             {
                 // Calculate the mouse press world point in pixels.
                 const PointWorldPx mouse_point_px(projection::get().toPointWorldPx(mouse_point_coord, controller_zoom));
